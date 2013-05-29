@@ -28,5 +28,7 @@ echo "done"
 
 # name resolution
 ip=$(ifconfig eth0 | perl -ne 'if (/inet addr:(?<ip>.+?)\s+/){print $+{ip}}')
-echo "${ip} $(hostname) $(hostname -s)" >> /etc/hosts
+if [[ $(grep -c $(hostname) /etc/hosts) -eq 0 ]]; then
+    echo "${ip} $(hostname) puppet" >> /etc/hosts
+fi
 
