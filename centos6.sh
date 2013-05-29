@@ -25,3 +25,8 @@ echo "done"
 echo -n "Installing puppet..."
 yum install -y puppet >/dev/null 2>&1
 echo "done"
+
+# name resolution
+ip=$(ifconfig eth0 | perl -ne 'if (/inet addr:(?<ip>.+?)\s+/){print $+{ip}}')
+echo "${ip} $(hostname) $(hostname -s)" >> /etc/hosts
+
