@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "centos6"
-  config.vm.base_mac = "080027CHANGEME"
+  config.vm.base_mac = "0800272FB7F7"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
