@@ -4,7 +4,8 @@
 
 set -e
 
-REPO_URL="https://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm"
+PUPP_URL="https://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm"
+EPEL_URL="http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm"
 
 if [ "$EUID" -ne "0" ]; then
   echo "This script must be run as root." >&2
@@ -18,7 +19,12 @@ fi
 
 # Install puppet labs repo
 echo -n "Adding puppetlabs yum repo..."
-rpm -ivh ${REPO_URL} >/dev/null 2>&1
+rpm -ivh ${PUPP_URL} >/dev/null 2>&1
+echo "done"
+
+# Install EPEL repo
+echo -n "Adding EPEL yum repo..."
+rpm -ivh ${EPEL_URL} >/dev/null 2>&1
 echo "done"
 
 # Install Puppet...
