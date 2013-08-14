@@ -8,11 +8,11 @@ Exec        { path => '/usr/sbin:/sbin:/bin:/usr/bin' }
 Sshd_config { notify => Service[ 'sshd' ] }
 User        { managehome => true }
 
-$packages = [ 'httpd', 'mysql-server', 'php', 'php-mysql', 'php-pear' ]
+# $packages = [ 'blah' ]
 
-package { $packages:
-    ensure => installed,
-}
+# package { $packages:
+#     ensure => installed,
+# }
 
 file { '/etc/profile.d/aliases.sh':
     owner  => 'root', group => 'root', mode => '0644',
@@ -23,12 +23,6 @@ file { '/etc/profile.d/aliases.sh':
 service { 'sshd':
     ensure => 'running',
     enable => 'true',
-}
-
-service { 'httpd':
-    ensure  => 'running',
-    enable  => true,
-    require => Package[ [ 'httpd', 'php' ] ],
 }
 
 # sshd config
@@ -70,11 +64,3 @@ augeas { 'sudo_include_dir':
     context => '/files/etc/sudoers',
     changes => 'set #includedir "/etc/sudoers.d"',
 }
-
-# make 'service httpd ...' work properly
-file { '/etc/sysconfig/httpd':
-    owner   => 'root', group => 'root', mode => '0644',
-    content => "PIDFILE=/var/run/httpd/httpd.pid\nDAEMON_COREFILE_LIMIT=unlimited\n",
-    require => Package[ 'httpd' ],
-}
-
