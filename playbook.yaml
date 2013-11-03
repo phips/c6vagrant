@@ -1,0 +1,10 @@
+---
+- hosts: default
+  tasks:
+    - name: Ensure libselinux-python installed
+      yum:  name=libselinux-python state=present
+    - name: Ensure EPEL RPM installed
+      yum:  name=http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present
+    - name: Ensure aliases.sh present
+      copy: src=files/aliases.sh dest=/etc/profile.d/aliases.sh
+          owner=root group=root mode=0644
