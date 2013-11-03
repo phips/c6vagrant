@@ -1,4 +1,4 @@
-# CentOS 6 Vagrant setup with Puppet
+# CentOS 6 Vagrant setup with Ansible
 
 A basic install of a [@core CentOS6 Vagrant Box](http://vntx-box.s3.amazonaws.com/centos6.box).
 
