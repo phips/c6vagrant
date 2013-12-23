@@ -8,11 +8,10 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "centos6"
-  config.vm.base_mac = "0800272FB7F7"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://vntx-box.s3.amazonaws.com/centos6.box"
+  config.vm.box_url = "http://vntx.cc/boxes/centos65.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -49,21 +48,11 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
 
-  # Enable provisioning with Puppet stand alone.  Puppet manifests
-  # are contained in a directory path relative to this Vagrantfile.
-  # You will need to create the manifests directory and a manifest in
-  # the file base.pp in the manifests_path directory.
-  #
-
-  # first, get puppet on there
-  config.vm.provision :shell, :path => "centos6.sh"
-
-  # then hand over to puppet to do the rest
-  config.vm.provision :puppet do |puppet|
-    puppet.manifests_path = "puppet/manifests"
-    puppet.manifest_file  = "bootstrap.pp"
-    puppet.module_path    = "puppet/modules"
-    puppet.options        = "--hiera_config /vagrant/hiera.yaml"
+  # provision with ansible
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook          = "playbook.yaml"
+    ansible.sudo              = true
+    ansible.host_key_checking = false
   end
 end
 

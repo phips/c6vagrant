@@ -1,2 +1,4 @@
 .DS_Store
 *.sw?
+vagrant_ansible_inventory_default
+.vagrant
