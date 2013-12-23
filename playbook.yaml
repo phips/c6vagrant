@@ -22,6 +22,13 @@
         - php-mysql
         - php-pear
 
+    - name: Create a basic phpinfo() index page
+      copy: src=files/index.php dest=/var/www/html/index.php mode=0644 owner=vagrant group=vagrant
+
     - name: Ensure httpd service is running
       service: name=httpd state=running
 
+    - name: Ensure mysql service is running
+      service: name=mysqld state=running
+
+# vim: set ts=2 sw=2:
