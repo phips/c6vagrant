@@ -35,24 +35,13 @@ Vagrant.configure("2") do |config|
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
   #
   config.vm.provider :virtualbox do |vb|
-    # Don't boot with headless mode
+  # Don't boot with headless mode
     vb.gui = false
-  #
   #   # Use VBoxManage to customize the VM. For example to change memory:
   #   vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
-  #
-  # View the documentation for the provider you're using for more
-  # information on available options.
-
-  # Enable provisioning with Puppet stand alone.  Puppet manifests
-  # are contained in a directory path relative to this Vagrantfile.
-  # You will need to create the manifests directory and a manifest in
-  # the file base.pp in the manifests_path directory.
-  #
 
   # provision with ansible
   config.vm.provision "ansible" do |ansible|
@@ -61,4 +50,3 @@ Vagrant.configure("2") do |config|
     ansible.host_key_checking = false
   end
 end
-
