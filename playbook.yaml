@@ -1,5 +1,7 @@
 ---
 - hosts: default
+  vars:
+    myname: c6
   tasks:
     - name: Ensure libselinux-python installed
       yum:  name=libselinux-python state=present
@@ -10,3 +12,12 @@
     - name: Ensure aliases.sh present
       copy: src=files/aliases.sh dest=/etc/profile.d/aliases.sh
             owner=root group=root mode=0644
+
+    - name: Ensure hostname set
+      hostname: name={{ myname }}
+
+    - name: Ensure hostname is in /etc/hosts
+      lineinfile:
+        dest=/etc/hosts
+        regexp="{{ ansible_default_ipv4.address }} {{ myname }}"
+        line="{{ ansible_default_ipv4.address }} {{ myname }}"
