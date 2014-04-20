@@ -1,0 +1,10 @@
+---
+- hosts: all
+  sudo: true
+  gather_facts: true
+
+  roles:
+    - hosts
+    - shell
+    - packages
+    - repos

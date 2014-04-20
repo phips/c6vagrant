@@ -5,26 +5,37 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "c65lvm"
-  config.vm.box_url = "http://vntx.cc/boxes/c65lvm_vmware.box"
-  config.vm.box_check_update = false
-  config.ssh.forward_agent = true
-
-  # config.vm.network :forwarded_port, guest: 80, host: 8080
-  # config.vm.network :private_network, ip: "192.168.33.10"
-  # config.vm.network :public_network
-  # config.vm.synced_folder "../data", "/vagrant_data"
-
-  config.vm.provider :vmware_fusion do |v|
-    v.gui = false
-    v.vmx["memsize"]  = "512"
-    v.vmx["numvcpus"] = "2"
+  # First VM
+  config.vm.define "host1", primary: true do |host1|
+    host1.vm.box = "c65lvm"
+#   host1.vm.network "forwarded_port", guest: 8080, host: 8080
+    host1.vm.provider :vmware_fusion do |vmw|
+      vmw.vmx["memsize"] = "1024"
+    end
+    host1.vm.provision "ansible" do |a|
+        a.playbook          = "site.yml"
+        a.sudo              = true
+        a.host_key_checking = false
+        a.extra_vars        = {
+            myname: 'host1'
+        }
+    end
   end
 
-  # provision with ansible
-  config.vm.provision "ansible" do |a|
-    a.playbook          = "play.yaml"
-    a.sudo              = true
-    a.host_key_checking = false
+  # Second VM
+  config.vm.define "host2", primary: true do |host2|
+    host2.vm.box = "c65lvm"
+#   host2.vm.network "forwarded_port", guest: 8080, host: 8080
+    host2.vm.provider :vmware_fusion do |vmw|
+      vmw.vmx["memsize"] = "1024"
+    end
+    host2.vm.provision "ansible" do |a|
+        a.playbook          = "site.yml"
+        a.sudo              = true
+        a.host_key_checking = false
+        a.extra_vars        = {
+            myname: 'host2'
+        }
+    end
   end
 end
