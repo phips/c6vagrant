@@ -20,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # provision with ansible
   config.vm.provision "ansible" do |a|
-    a.playbook          = "playbook.yaml"
+    a.playbook          = "play.yaml"
     a.sudo              = true
     a.host_key_checking = false
   end
