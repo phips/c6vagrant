@@ -1,7 +1,7 @@
 ---
 - hosts: default
   vars:
-    myname: c6
+    myname: test.lan
   tasks:
     - name: Ensure libselinux-python installed
       yum:  name=libselinux-python state=present
@@ -23,5 +23,5 @@
     - name: Ensure hostname is in /etc/hosts
       lineinfile:
         dest=/etc/hosts
-        regexp="{{ ansible_default_ipv4.address }} {{ myname }}"
-        line="{{ ansible_default_ipv4.address }} {{ myname }}"
+        regexp="^{{ ansible_default_ipv4.address }}.+$"
+        line="{{ ansible_default_ipv4.address }} {{ ansible_fqdn }} {{ ansible_hostname }}"
