@@ -5,8 +5,9 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "c65"
+  config.vm.box = "c65lvm"
   config.vm.box_url = "http://vntx.cc/boxes/c65lvm_vmware.box"
+  config.vm.box_check_update = false
   config.ssh.forward_agent = true
 
   # config.vm.network :forwarded_port, guest: 80, host: 8080
