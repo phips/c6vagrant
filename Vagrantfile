@@ -1,6 +1,18 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby sw=2 ts=2:
 
+# figure out which hosts are getting destroyed
+destroy = ARGV.select { |x| !x.start_with?('-') }
+if destroy.length > 0 and destroy[0] == 'destroy'
+  destroy.shift # left over array destroy should be list of hosts or []
+  if destroy.length == 0
+    destroy = true  # destroy everything
+  end
+else
+  destroy = false   # destroy nothing
+end
+# 
+
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
