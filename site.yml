@@ -8,3 +8,18 @@
     - shell
     - packages
     - repos
+
+- hosts: host1
+  sudo: true
+  roles:
+    - ansible
+
+- hosts: host2
+  sudo: true
+  roles:
+    - puppet
+
+- hosts: host3
+  sudo: true
+  roles:
+    - chef

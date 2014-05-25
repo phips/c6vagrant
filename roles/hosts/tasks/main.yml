@@ -2,7 +2,7 @@
 # tasks file for hosts
 
 - name: Ensure hostname set
-  hostname: name={{ myname }}
+  hostname: name={{ inventory_hostname }}
 
 - name: Ensure hostname is in /etc/hosts
   lineinfile:

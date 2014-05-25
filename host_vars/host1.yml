@@ -1,0 +1,6 @@
+---
+packages:
+  - createrepo
+  - asciidoc
+  - python-setuptools
+  - python2-devel

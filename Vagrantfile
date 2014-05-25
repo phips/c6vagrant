@@ -20,54 +20,42 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # First VM
   config.vm.define "host1", primary: true do |host1|
     host1.vm.box = "c65lvm"
-    # host1.vm.network "forwarded_port", guest: 8080, host: 8080
+    host1.vm.network "forwarded_port", guest: 80, host: 8081
     host1.vm.provider :vmware_fusion do |vmw|
-      vmw.vmx["memsize"] = "1024"
-
-      # Example of adding a secondary disk
-      #
-      vdiskmanager = '/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager'
-      dir = "#{ENV['PWD']}/.vagrant/additional-disks"
-
-      unless File.directory?( dir )
-        Dir.mkdir dir
-      end
-
-      file_to_disk = "#{dir}/hd2.vmdk"
-
-      unless File.exists?( file_to_disk )
-        `#{vdiskmanager} -c -s 10GB -a lsilogic -t 0 #{file_to_disk}`
-      end
-
-      vmw.vmx['scsi0:1.filename'] = file_to_disk
-      vmw.vmx['scsi0:1.present']  = 'TRUE'
-      vmw.vmx['scsi0:1.redo']     = ''
-      # End
+      vmw.vmx["memsize"] = "512"
     end
     host1.vm.provision "ansible" do |a|
       a.playbook          = "site.yml"
       a.sudo              = true
       a.host_key_checking = false
-      a.extra_vars        = {
-          myname: 'host1'
-      }
     end
   end
 
   # Second VM
-  config.vm.define "host2", primary: true do |host2|
+  config.vm.define "host2" do |host2|
     host2.vm.box = "c65lvm"
-#   host2.vm.network "forwarded_port", guest: 8080, host: 8080
+    host2.vm.network "forwarded_port", guest: 80, host: 8082
     host2.vm.provider :vmware_fusion do |vmw|
-      vmw.vmx["memsize"] = "1024"
+      vmw.vmx["memsize"] = "512"
     end
     host2.vm.provision "ansible" do |a|
       a.playbook          = "site.yml"
       a.sudo              = true
       a.host_key_checking = false
-      a.extra_vars        = {
-          myname: 'host2'
-      }
+    end
+  end
+
+  # Third VM
+  config.vm.define "host3" do |host3|
+    host3.vm.box = "c65lvm"
+    host3.vm.network "forwarded_port", guest: 80, host: 8083
+    host3.vm.provider :vmware_fusion do |vmw|
+      vmw.vmx["memsize"] = "512"
+    end
+    host3.vm.provision "ansible" do |a|
+      a.playbook          = "site.yml"
+      a.sudo              = true
+      a.host_key_checking = false
     end
   end
 end

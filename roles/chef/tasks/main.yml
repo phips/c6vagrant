@@ -1,0 +1,9 @@
+---
+# tasks file for chef
+
+- name: Ensure Chef is installed
+  yum: name={{ item }} state=present
+  with_items:
+    - ruby
+    - chef
+    - chef-server

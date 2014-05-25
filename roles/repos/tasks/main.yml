@@ -8,3 +8,8 @@
 - name: Ensure EPEL RPM installed
   yum:  name=http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm 
         state=present
+  when: installepel
+
+- name: Ensure local repo set up
+  copy: src=local.repo dest=/etc/yum.repos.d/local.repo
+        owner=root group=root mode=0644
