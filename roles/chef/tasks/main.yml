@@ -4,6 +4,5 @@
 - name: Ensure Chef is installed
   yum: name={{ item }} state=present
   with_items:
-    - ruby
     - chef
     - chef-server

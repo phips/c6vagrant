@@ -50,7 +50,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     host3.vm.box = "c65lvm"
     host3.vm.network "forwarded_port", guest: 80, host: 8083
     host3.vm.provider :vmware_fusion do |vmw|
-      vmw.vmx["memsize"] = "512"
+      vmw.vmx["memsize"] = "1024"
     end
     host3.vm.provision "ansible" do |a|
       a.playbook          = "site.yml"
