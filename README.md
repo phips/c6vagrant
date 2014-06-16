@@ -4,7 +4,9 @@ Multi VM run of a [@core CentOS 6 Vagrant Box](http://vntx.cc/boxes/c65lvm_vmwar
 
 Needs [Ansible](http://ansible.com) installed on your host system before running up (the irony).
 
-Sets up [Ansible](http://ansible.com) on one host, [Puppet](http://puppetlabs.com) on a second, and [Chef](http://opscode.com) on a third. I'd downloaded the RPMs and dependencies beforehand, putting them in a local Yum repository.
+Sets up [Ansible](http://ansible.com) on one host, [Puppet](http://puppetlabs.com) on a second, and [Chef](http://opscode.com) on a third. Three more VMs then serve as 'clients' of each CM solution - the idea being each CM machine will configure a web service on each of the three clients.
+
+I'd downloaded the RPMs and dependencies beforehand, putting them in a local Yum repository.
 
 Puppet was downloaded via yum.puppetlabs.com, using `yumdownloader --resolve` Chef was downloaded from [Getchef.com](http://www.getchef.com/chef/install/), and Ansible was built from [the source](https://github.com/ansible/ansible) using 'make rpm' in the Git checkout.
 
