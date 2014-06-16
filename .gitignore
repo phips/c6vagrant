@@ -2,3 +2,5 @@
 *.sw?
 .vagrant
 vagrant_ansible_inventory_default
+rpms/*rpm
+rpms/repodata
