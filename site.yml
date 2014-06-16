@@ -13,12 +13,12 @@
   roles:
     - ansible
 
-- hosts: puppetmaster
+- hosts: puppet
   sudo: true
   roles:
     - puppet
 
-- hosts: chef-server
+- hosts: chef
   sudo: true
   roles:
     - chef
