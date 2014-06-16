@@ -4,8 +4,7 @@
 - name: Ensure Chef is installed
   yum: name={{ item }} state=present
   with_items:
-    - chef
-    - chef-server
+    - "{{ chef_packages }}"
 
 - name: Ensure Chef binaries are on the PATH
   template: src=chef.sh.j2 dest=/etc/profile.d/chef.sh

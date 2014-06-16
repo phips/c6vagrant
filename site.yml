@@ -3,7 +3,7 @@
   sudo: true
 
   roles:
-    - hosts
+    - { role: hosts, tags: hosts }
     - shell
     - packages
     - repos
@@ -22,5 +22,9 @@
 - hosts: chef
   sudo: true
   roles:
-    - chef
+    - { role: chef, chef_packages: [ chef, chef-server ] }
 
+- hosts: chef-client
+  sudo: true
+  roles:
+    - { role: chef, chef_packages: [ chef ] }
