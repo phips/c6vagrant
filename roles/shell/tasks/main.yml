@@ -9,4 +9,4 @@
   copy: src=gitconfig dest=/home/vagrant/.gitconfig
   sudo: yes
   sudo_user: vagrant
-  when: inventory_hostname is master
+  when: inventory_hostname == 'master'
