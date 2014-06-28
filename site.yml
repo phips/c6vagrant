@@ -8,23 +8,7 @@
     - packages
     - repos
 
-- hosts: master
+- hosts: master:puppet
   sudo: true
   roles:
-    - ansible
     - vim
-
-- hosts: puppet
-  sudo: true
-  roles:
-    - puppet
-
-- hosts: chef
-  sudo: true
-  roles:
-    - { role: chef, chef_packages: [ chef, chef-server ] }
-
-- hosts: chef-client
-  sudo: true
-  roles:
-    - { role: chef, chef_packages: [ chef ] }

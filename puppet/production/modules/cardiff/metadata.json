@@ -1,0 +1,17 @@
+{
+  "name": "markp-cardiff",
+  "version": "0.1.0",
+  "author": "markp",
+  "summary": "DevOps Cardiff",
+  "license": "Apache 2.0",
+  "source": "",
+  "project_page": null,
+  "issues_url": null,
+  "dependencies": [
+    {
+      "version_range": ">= 1.0.0",
+      "name": "puppetlabs-stdlib"
+    }
+  ]
+}
+
