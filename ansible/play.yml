@@ -1,0 +1,27 @@
+---
+  - hosts: webservers
+    sudo:  true
+    tasks:
+      - name: Ensure apache is installed
+        yum:  name=httpd
+
+      - name: Ensure our app parent path exists
+        file: path=/srv/www state=directory
+              owner=vagrant group=vagrant
+
+      - name: Ensure our app is cloned
+        git:  repo=file:///vagrant/app.git
+              dest=/srv/www/flask_app
+
+      - name: Ensure service definition is in place
+        copy: src=files/cardiff.init dest=/etc/init.d/cardiff
+              mode=0755
+
+      - name: Ensure our app is running
+        service: name=cardiff pattern=app.py state=running
+
+      - name: Ensure Apache serves our app
+        copy: src=files/app.conf dest=/etc/httpd/conf.d/app.conf
+
+      - name: Ensure Apache is running
+        service: name=httpd state=running
