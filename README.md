@@ -1,14 +1,16 @@
 # Puppet vs Chef vs Ansible
 
-Multi VM run of a [@core CentOS 6 Vagrant Box](http://vntx.cc/boxes/c65lvm_vmware.box), used to showcase Puppet, Chef and Ansible.
+Multi VM run of a [@core CentOS 6 Vagrant Box](http://vntx.cc/boxes/c65lvm_vmware.box), used to showcase Puppet, Chef and Ansible. Originally written for my [DevOps Cardiff talk](http://www.meetup.com/DevOps-Cardiff/events/183990192).
 
 Needs [Ansible](http://ansible.com) installed on your host system before running up (the irony).
 
-Sets up [Ansible](http://ansible.com) on one host, [Puppet](http://puppetlabs.com) on a second, and [Chef](http://opscode.com) on a third. Three more VMs then serve as 'clients' of each CM solution - the idea being each CM machine will configure a web service on each of the three clients.
+Sets up three VMs, with the aim of installing [Ansible](http://ansible.com) on one host, [Puppet](http://puppetlabs.com) on a second, and [Chef](http://opscode.com) on a third. Three more VMs then serve as 'clients' of each CM solution - the idea being each CM machine will configure a web service on each of the three clients. The installs were done manually to demonstrate what's required.
 
 I'd downloaded the RPMs and dependencies beforehand, putting them in a local Yum repository.
 
 Puppet was downloaded via yum.puppetlabs.com, using `yumdownloader --resolve` Chef was downloaded from [Getchef.com](http://www.getchef.com/chef/install/), and Ansible was built from [the source](https://github.com/ansible/ansible) using 'make rpm' in the Git checkout.
+
+The support files for each CM demostration are pretty clear here - the [chef-repo](https://github.com/phips/c6vagrant/tree/pVcVa/chef-repo), [puppet](https://github.com/phips/c6vagrant/tree/pVcVa/puppet) and [ansible](https://github.com/phips/c6vagrant/tree/pVcVa/ansible) directories.
 
 Here's the file list of my local yum repository:
 
