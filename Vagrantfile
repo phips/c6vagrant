@@ -20,6 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # master VM
   config.vm.define "master", primary: true do |master|
     master.vm.box = "c65lvm"
+    master.box_url = "http://vntx.cc/boxes/c65lvm_vmware.box"
     master.vm.provider :vmware_fusion do |vmw|
       vmw.vmx["memsize"] = "512"
     end
@@ -34,6 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # chef-server VM
   config.vm.define "chef" do |cs|
     cs.vm.box = "c65lvm"
+    cs.box_url = "http://vntx.cc/boxes/c65lvm_vmware.box"
     cs.vm.provider :vmware_fusion do |vmw|
       vmw.vmx["memsize"] = "1024"
     end
@@ -47,6 +49,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # chef-client VM
   config.vm.define "chef-client" do |cc|
     cc.vm.box = "c65lvm"
+    cc.box_url = "http://vntx.cc/boxes/c65lvm_vmware.box"
     cc.vm.network "forwarded_port", guest: 80, host: 8081
     cc.vm.provider :vmware_fusion do |vmw|
       vmw.vmx["memsize"] = "512"
@@ -61,6 +64,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # puppetmaster VM
   config.vm.define "puppet" do |pm|
     pm.vm.box = "c65lvm"
+    pm.box_url = "http://vntx.cc/boxes/c65lvm_vmware.box"
     pm.vm.provider :vmware_fusion do |vmw|
       vmw.vmx["memsize"] = "512"
     end
@@ -74,6 +78,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # puppet-client VM
   config.vm.define "puppet-client" do |pc|
     pc.vm.box = "c65lvm"
+    pc.box_url = "http://vntx.cc/boxes/c65lvm_vmware.box"
     pc.vm.network "forwarded_port", guest: 80, host: 8082
     pc.vm.provider :vmware_fusion do |vmw|
       vmw.vmx["memsize"] = "512"
@@ -88,6 +93,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # chef-client VM
   config.vm.define "ansible-target" do |at|
     at.vm.box = "c65lvm"
+    at.box_url = "http://vntx.cc/boxes/c65lvm_vmware.box"
     at.vm.network "forwarded_port", guest: 80, host: 8083
     at.vm.provider :vmware_fusion do |vmw|
       vmw.vmx["memsize"] = "512"
